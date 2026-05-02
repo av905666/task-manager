@@ -200,10 +200,10 @@ git push -u origin main
 ---
 
 ## 📸 Screenshots
-> dashboard<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/16a7fb42-1c35-48a3-9e74-e1f479ea7de0" />
+> <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/16a7fb42-1c35-48a3-9e74-e1f479ea7de0" />
 
 
 ---
 
 ## 🏗️ Built By
-Your Name — [GitHub](https://github.com/av905666)
+Aditya Verma — [GitHub](https://github.com/av905666)
