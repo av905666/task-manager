@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// API Routes
+//  Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
