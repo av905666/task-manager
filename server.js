@@ -14,7 +14,7 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://task-manager-tauji.vercel.app/login"
+        "https://task-manager-tauji.vercel.app"
     ],
     credentials: true
 }));
