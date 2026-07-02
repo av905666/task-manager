@@ -11,10 +11,16 @@ const userRoutes = require('./routes/users');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://your-app.vercel.app"
+    ],
+    credentials: true
+}));
 app.use(express.json());
 
-//  Routes
+// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
