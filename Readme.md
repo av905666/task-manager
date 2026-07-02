@@ -3,7 +3,7 @@
 A full-stack team task management app with role-based access control, built with **React + Vite + Node.js + Express + MongoDB**.
 
 ## 🔗 Live Demo
-> Add your Railway URL here after deployment
+[> Click Here](https://task-manager-production-8bc6.up.railway.app/dashboard)
 
 ## 🛠️ Tech Stack
 
@@ -200,9 +200,10 @@ git push -u origin main
 ---
 
 ## 📸 Screenshots
-> Add screenshots here
+> <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/16a7fb42-1c35-48a3-9e74-e1f479ea7de0" />
+
 
 ---
 
 ## 🏗️ Built By
-Your Name — [GitHub](https://github.com/YOUR_USERNAME)
+Aditya Verma — [GitHub](https://github.com/av905666)
