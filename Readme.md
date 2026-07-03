@@ -3,204 +3,298 @@
 A full-stack team task management app with role-based access control, built with **React + Vite + Node.js + Express + MongoDB**.
 
 ## 🔗 Live Demo
-[> Click Here](https://task-manager-production-8bc6.up.railway.app/dashboard)
+[> Click Here](https://task-manager-tauji.vercel.app/)
+
+- **Frontend:** https://task-manager-tauji.vercel.app/
+- **Backend API:** https://taskflow-1-w2m9.onrender.com
+
+> Replace the above URLs with your deployed application URLs.
+
+---
 
 ## 🛠️ Tech Stack
 
-| Layer | Tech |
-|-------|------|
+| Layer | Technology |
+|--------|------------|
 | Frontend | React 18, Vite, React Router v6 |
-| Backend | Node.js, Express |
-| Database | MongoDB (Mongoose ODM) |
-| Auth | JWT (JSON Web Tokens) |
-| Styling | Custom CSS with CSS variables |
-| Deploy | Railway |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas (Mongoose) |
+| Authentication | JWT (JSON Web Tokens) |
+| HTTP Client | Axios |
+| Styling | Custom CSS |
+| Frontend Deployment | Vercel |
+| Backend Deployment | Render |
 
 ---
 
 ## 🚀 Features
 
 ### 🔐 Authentication
-- **Signup** with name, email, password, and role selection (Admin / Member)
-- **Login** with JWT token (7-day expiry)
-- Protected routes — unauthenticated users redirected to login
+- Secure Signup & Login using JWT
+- Password hashing with bcrypt
+- Protected routes
+- Persistent authentication using Local Storage
 
 ### 👥 Role-Based Access Control
+
 | Action | Admin | Member |
 |--------|-------|--------|
 | Create Project | ✅ | ❌ |
-| Edit / Delete Project | ✅ | ❌ |
+| Edit/Delete Project | ✅ | ❌ |
 | Create Task | ✅ | ❌ |
-| Edit / Delete Task | ✅ | ❌ |
-| View own projects | ✅ | ✅ |
-| Update task status | ✅ | ✅ |
-| View Dashboard | ✅ | ✅ |
+| Edit/Delete Task | ✅ | ❌ |
+| View Assigned Projects | ✅ | ✅ |
+| Update Task Status | ✅ | ✅ |
+| Dashboard Access | ✅ | ✅ |
+
+---
 
 ### 📁 Projects
-- Create projects with name, description, and members
-- Add/remove team members from projects
-- Admin: full CRUD on all projects
-- Member: view only projects they belong to
+
+- Create and manage projects
+- Assign team members
+- Full CRUD operations for Admin
+- Members can only view assigned projects
+
+---
 
 ### ✅ Tasks (Kanban Board)
-- Visual **3-column kanban board**: Todo → In Progress → Done
-- One-click status transitions between columns
-- Filter by status and project
-- Overdue tasks highlighted in red
-- Full CRUD for Admins; status-only updates for Members
+
+- Three-column Kanban Board
+  - Todo
+  - In Progress
+  - Done
+- Drag-free one-click status updates
+- Filter tasks by project and status
+- Highlight overdue tasks
+- CRUD operations for Admin
+- Status update permission for Members
+
+---
 
 ### 📊 Dashboard
-- Summary stats: Total, Completed, In Progress, Overdue tasks
-- Overall progress bar with completion percentage
-- Recent tasks table with status, assignee, and due date
+
+- Task statistics
+- Progress overview
+- Recent tasks
+- Completion percentage
+- Overdue task tracking
 
 ---
 
 ## 📂 Project Structure
 
-```
-taskflow/
-├── server.js              # Express server entry
+```text
+task-manager/
+│
+├── server.js
+├── package.json
 ├── models/
-│   ├── User.js            # User schema
-│   ├── Project.js         # Project schema
-│   └── Task.js            # Task schema
+│   ├── User.js
+│   ├── Project.js
+│   └── Task.js
 ├── routes/
-│   ├── auth.js            # POST /api/auth/signup|login, GET /api/auth/me
-│   ├── projects.js        # CRUD /api/projects
-│   ├── tasks.js           # CRUD /api/tasks, GET /api/tasks/dashboard
-│   └── users.js           # GET /api/users (admin), /api/users/members
+│   ├── auth.js
+│   ├── projects.js
+│   ├── tasks.js
+│   └── users.js
 ├── middleware/
-│   └── auth.js            # protect + adminOnly middlewares
-└── client/                # React Vite frontend
-    └── src/
-        ├── pages/         # Login, Signup, Dashboard, Projects, Tasks
-        ├── components/    # Layout, Sidebar
-        ├── context/       # AuthContext (JWT + user state)
-        └── services/      # api.js (axios)
+│   └── auth.js
+└── client/
+    ├── src/
+    │   ├── components/
+    │   ├── context/
+    │   ├── pages/
+    │   └── services/
+    ├── package.json
+    └── vite.config.js
 ```
 
 ---
 
-## 🔗 API Reference
+## 🔗 API Endpoints
 
-### Auth
-```
-POST /api/auth/signup    { name, email, password, role }
-POST /api/auth/login     { email, password }
-GET  /api/auth/me        (requires token)
+### Authentication
+
+```http
+POST /api/auth/signup
+POST /api/auth/login
+GET  /api/auth/me
 ```
 
 ### Projects
-```
-GET    /api/projects          List projects (filtered by role)
-POST   /api/projects          Create project (Admin only)
-GET    /api/projects/:id      Get single project
-PUT    /api/projects/:id      Update project (Admin only)
-DELETE /api/projects/:id      Delete project + tasks (Admin only)
+
+```http
+GET    /api/projects
+POST   /api/projects
+GET    /api/projects/:id
+PUT    /api/projects/:id
+DELETE /api/projects/:id
 ```
 
 ### Tasks
-```
-GET    /api/tasks             List tasks (filtered by role)
-GET    /api/tasks/dashboard   Dashboard stats + recent tasks
-POST   /api/tasks             Create task (Admin only)
-PUT    /api/tasks/:id         Update task (Admin: all fields; Member: status only)
-DELETE /api/tasks/:id         Delete task (Admin only)
+
+```http
+GET    /api/tasks
+GET    /api/tasks/dashboard
+POST   /api/tasks
+PUT    /api/tasks/:id
+DELETE /api/tasks/:id
 ```
 
 ### Users
-```
-GET /api/users         All users (Admin only)
-GET /api/users/members Members only
+
+```http
+GET /api/users
+GET /api/users/members
 ```
 
 ---
 
-## 🖥️ Local Setup
+# 🖥️ Local Setup
 
-### Prerequisites
-- Node.js ≥ 18
-- MongoDB Atlas account (or local MongoDB)
+## Prerequisites
 
-### 1. Clone & install
+- Node.js (v18+)
+- MongoDB Atlas account
+
+### Clone the repository
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/taskflow.git
-cd taskflow
+git clone https://github.com/av905666/task-manager.git
+cd task-manager
+```
+
+### Install dependencies
+
+Backend
+
+```bash
 npm install
-cd client && npm install && cd ..
 ```
 
-### 2. Configure environment
+Frontend
+
 ```bash
-cp .env.example .env
-# Edit .env with your values:
-# MONGO_URI=mongodb+srv://...
-# JWT_SECRET=your_secret_key
-# PORT=5000
-```
-
-### 3. Run development
-```bash
-# Terminal 1 — Backend
-node server.js
-
-# Terminal 2 — Frontend
-cd client && npm run dev
-```
-
-Open `http://localhost:5173`
-
-### 4. Build for production
-```bash
-npm run build      # builds client/dist
-npm start          # serves everything from Express
+cd client
+npm install
 ```
 
 ---
 
-## 🌐 Deploy to Railway
+## Configure Environment Variables
 
-### Step 1 — MongoDB Atlas
-1. Go to [mongodb.com/atlas](https://www.mongodb.com/atlas) → Create free cluster
-2. Add database user (username + password)
-3. Whitelist all IPs: `0.0.0.0/0`
-4. Get connection string: `mongodb+srv://user:pass@cluster.mongodb.net/taskflow`
+### Backend (.env)
 
-### Step 2 — GitHub
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USERNAME/taskflow.git
-git push -u origin main
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 ```
 
-### Step 3 — Railway
-1. Go to [railway.app](https://railway.app) → New Project
-2. **Deploy from GitHub repo** → select your repo
-3. Add **Environment Variables**:
-   ```
-   MONGO_URI=mongodb+srv://...
-   JWT_SECRET=your_super_secret_key_here
-   NODE_ENV=production
-   PORT=5000
-   ```
-4. Railway auto-detects `railway.toml` and runs build + start
-5. Go to **Settings → Networking → Generate Domain** for your live URL
+### Frontend (.env.development)
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
 
 ---
 
-## 🧪 Test Accounts (create via signup)
-| Role | What you can do |
-|------|----------------|
-| Admin | Create projects & tasks, manage all |
-| Member | View assigned projects, update task status |
+## Run the Application
+
+### Backend
+
+```bash
+npm run dev
+```
+
+### Frontend
+
+```bash
+cd client
+npm run dev
+```
+
+Frontend runs at:
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🌐 Deployment
+
+## Backend (Render)
+
+1. Push your project to GitHub.
+2. Create a new **Web Service** on Render.
+3. Connect the GitHub repository.
+4. Add the following environment variables:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=5000
+NODE_ENV=production
+```
+
+5. Deploy the backend.
+
+---
+
+## Frontend (Vercel)
+
+1. Import the GitHub repository.
+2. Set the **Root Directory** to:
+
+```text
+client
+```
+
+3. Configure:
+
+```text
+Build Command:
+npm run build
+
+Output Directory:
+dist
+```
+
+4. Add the environment variable:
+
+```env
+VITE_API_URL=https://YOUR-RENDER-URL.onrender.com/api
+```
+
+5. Deploy.
+
+---
+
+
+
+## 👨‍💻 Built By
+
+**Aditya Verma**
+
+- GitHub: https://github.com/av905666
+- Portfolio: https://adityaverma19.netlify.app/
+
+---
+
+## 🧪 Test Accounts (create via signup) | Role | What you can do | |------|----------------| | Admin | Create projects & tasks, manage all | | Member | View assigned projects, update task status | 
 
 ---
 
 ## 📸 Screenshots
 > <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/16a7fb42-1c35-48a3-9e74-e1f479ea7de0" />
+
+---
+
+## ⭐ If you like this project
+
+Please consider giving it a ⭐ on GitHub!
 
 
 ---
