@@ -8,8 +8,6 @@ A full-stack team task management app with role-based access control, built with
 - **Frontend:** https://task-manager-tauji.vercel.app/
 - **Backend API:** https://taskflow-1-w2m9.onrender.com
 
-> Replace the above URLs with your deployed application URLs.
-
 ---
 
 ## 🛠️ Tech Stack
